@@ -1,8 +1,11 @@
 package main
 
 import (
-	"notify/options"
 	"notify/tools/config"
+
+	"notify/tools/options"
+
+	"notify/tools/logger"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,11 +19,14 @@ func init() {
 }
 
 func main() {
+	logger.Info("starting service...")
+	defer logger.Sync()
+
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	r.Run()
+	r.Run(options.Opts.Server.HTTPAddr)
 }
