@@ -1,7 +1,6 @@
 package logger
 
 import (
-	"fmt"
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -10,15 +9,18 @@ import (
 var sugarLogger *zap.SugaredLogger
 
 type Config struct {
-	Filename string
-	Level    string
-	Dev      bool
+	Filename   string
+	MaxSize    int `mapstructure:"max_size"`
+	MaxBackups int `mapstructure:"max_backups"`
 }
 
-func InitLogger(conf *Config) {
-	fmt.Println(conf)
+func SetupLogger(logConf *Config) {
+	InitLogger(logConf)
 	defer sugarLogger.Sync()
-	writeSyncer := getLogWriter()
+}
+
+func InitLogger(logConf *Config) {
+	writeSyncer := getLogWriter(logConf)
 	encoder := getEncoder()
 	core := zapcore.NewCore(encoder, writeSyncer, zapcore.DebugLevel)
 
@@ -33,17 +35,25 @@ func getEncoder() zapcore.Encoder {
 	return zapcore.NewConsoleEncoder(encoderConfig)
 }
 
-func getLogWriter() zapcore.WriteSyncer {
+func getLogWriter(logConf *Config) zapcore.WriteSyncer {
 	lumberJackLogger := &lumberjack.Logger{
-		Filename:   "./test.log",
-		MaxSize:    1,
-		MaxBackups: 5,
+		Filename:   logConf.Filename,
+		MaxSize:    logConf.MaxSize,
+		MaxBackups: logConf.MaxBackups,
 		MaxAge:     30,
 		Compress:   false,
 	}
 	return zapcore.AddSync(lumberJackLogger)
 }
 
-func Info(msg string) {
-	sugarLogger.Infof(msg)
+func Info(msg string, args ...interface{}) {
+	sugarLogger.Infof(msg, args)
+}
+
+func Warn(msg string, args ...interface{}) {
+	sugarLogger.Warnf(msg, args)
+}
+
+func Error(msg string, args ...interface{}) {
+	sugarLogger.Errorf(msg, args)
 }

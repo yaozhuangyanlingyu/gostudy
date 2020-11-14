@@ -7,5 +7,3 @@ server:
 
 log:
   filename: "logs/shop.log"
-  max_size: 10
-  max_backups: 2

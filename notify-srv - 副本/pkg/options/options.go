@@ -1,11 +1,15 @@
 package options
 
+import (
+	"notify/pkg/logger"
+)
+
 var Opts options
 
 // 全局配置
 type options struct {
 	Server GinServerConfig
-	Log    LogConfig
+	Log    logger.Config
 }
 
 // gin服务
@@ -15,9 +19,4 @@ type GinServerConfig struct {
 	HTTPAddr     string `mapstructure:"http_addr"`
 	Mode         string
 	Pprof        bool
-}
-
-type LogConfig struct {
-	Filename string
-	Level    string
 }
