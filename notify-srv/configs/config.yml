@@ -6,8 +6,5 @@ server:
   pprof: true
 
 log:
-  filename: "shop",
-  level: "info",
-  dev: true
-
-  
+  filename: "logs/shop.log"
+  level: "info"

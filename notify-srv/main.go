@@ -1,11 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"notify/tools/config"
 
 	"notify/tools/options"
-
-	"notify/tools/logger"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,11 +15,19 @@ func init() {
 		panic(err)
 	}
 	config.Decode(v.AllSettings(), &options.Opts)
+
+	fmt.Println(v.AllSettings())
+	fmt.Println("====", options.Opts.Server.HTTPAddr, "====")
+	fmt.Println("====", options.Opts.Server.Mode, "====")
+	fmt.Println(options.Opts)
+	fmt.Println("===========================================")
+	//logger.InitLogger(&options.Opts.Log)
 }
 
 func main() {
-	logger.Info("starting service...")
-	defer logger.Sync()
+	//fmt.Println(options.Opts)
+
+	//logger.Info("starting service...")
 
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {

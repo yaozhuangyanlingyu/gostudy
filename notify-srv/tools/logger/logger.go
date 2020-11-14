@@ -1,8 +1,7 @@
 package logger
 
 import (
-	"net/http"
-
+	"fmt"
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -10,12 +9,15 @@ import (
 
 var sugarLogger *zap.SugaredLogger
 
-func init() {
-	InitLogger()
-	defer sugarLogger.Sync()
+type Config struct {
+	Filename string
+	Level    string
+	Dev      bool
 }
 
-func InitLogger() {
+func InitLogger(conf *Config) {
+	fmt.Println(conf)
+	defer sugarLogger.Sync()
 	writeSyncer := getLogWriter()
 	encoder := getEncoder()
 	core := zapcore.NewCore(encoder, writeSyncer, zapcore.DebugLevel)
@@ -40,17 +42,6 @@ func getLogWriter() zapcore.WriteSyncer {
 		Compress:   false,
 	}
 	return zapcore.AddSync(lumberJackLogger)
-}
-
-func simpleHttpGet(url string) {
-	sugarLogger.Debugf("Trying to hit GET request for %s", url)
-	resp, err := http.Get(url)
-	if err != nil {
-		sugarLogger.Errorf("Error fetching URL %s : Error = %s", url, err)
-	} else {
-		sugarLogger.Infof("Success! statusCode = %s for URL %s", resp.Status, url)
-		resp.Body.Close()
-	}
 }
 
 func Info(msg string) {

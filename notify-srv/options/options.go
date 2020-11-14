@@ -1,17 +1,14 @@
 package options
 
-import (
-	"notify/tools/dbgo"
-)
+var Opts options
 
-var Opts *options
-
+// 全局配置
 type options struct {
-	Server   *GinServerConfig
-	AplumDb  *dbgo.Config    `mapstructure:"aplum_db"`
-	ShortUrl *ShortUrlConfig `mapstructure:"short_url"`
+	Server GinServerConfig
+	Log    LogConfig
 }
 
+// gin服务
 type GinServerConfig struct {
 	ReadTimeout  int    `mapstructure:"read_timeout"`
 	WriteTimeout int    `mapstructure:"write_timeout"`
@@ -20,6 +17,7 @@ type GinServerConfig struct {
 	Pprof        bool
 }
 
-type ShortUrlConfig struct {
-	BaseUrl string `mapstructure:"base_url"`
+type LogConfig struct {
+	Filename string
+	Level    string
 }
