@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"notify/api/shorturl"
 	"notify/pkg/options"
 
@@ -9,7 +8,6 @@ import (
 )
 
 func RunGin(serverConf *options.GinServerConfig) {
-	fmt.Println(serverConf)
 	r := gin.Default()
 
 	// 路由解析
