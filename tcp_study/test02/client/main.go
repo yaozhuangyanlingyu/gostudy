@@ -14,6 +14,12 @@ func main() {
 	defer conn.Close()
 
 	for i := 0; i < 20; i++ {
-		conn.Write([]byte("hello world"))
+		msg := "Hello, 张飞"
+		data, err := proto.Encode(msg)
+		if err != nil {
+			fmt.Println("encode msg failed， err：", err)
+			return
+		}
+		conn.Write([]byte(msg))
 	}
 }
