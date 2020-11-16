@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"net"
-	"proto"
+	"bytes"
+	"encoding/binary"
 )
 
 // Encode 将消息编码
