@@ -1,6 +1,7 @@
 package options
 
 import (
+	"notify/pkg/goredis"
 	"notify/pkg/logger"
 )
 
@@ -10,6 +11,7 @@ var Opts options
 type options struct {
 	Server GinServerConfig
 	Log    logger.Config
+	Redis  goredis.Config
 }
 
 // gin服务

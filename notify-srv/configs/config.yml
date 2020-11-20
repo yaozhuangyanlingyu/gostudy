@@ -9,3 +9,8 @@ log:
   filename: "logs/shop.log"
   max_size: 10
   max_backups: 2
+
+redis:
+  host: "localhost:6379"
+  password: ""
+  db: 1

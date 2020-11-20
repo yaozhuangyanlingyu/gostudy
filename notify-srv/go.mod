@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/gin-gonic/gin v1.6.3
+	github.com/go-redis/redis/v8 v8.3.4
 	github.com/mdempsky/gocode v0.0.0-20200405233807-4acdcbdea79d // indirect
 	github.com/mitchellh/mapstructure v1.3.3
 	github.com/natefinch/lumberjack v2.0.0+incompatible
