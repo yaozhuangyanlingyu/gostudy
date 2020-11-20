@@ -4,6 +4,7 @@ import (
 	"fmt"
 	v1 "notify/api/v1"
 	"notify/pkg/config"
+	"notify/pkg/dbgo"
 	"notify/pkg/goredis"
 	"notify/pkg/logger"
 	"notify/pkg/options"
@@ -36,6 +37,13 @@ func (this *Engine) InitRouter() {
 	fmt.Println(redisClient)
 
 	// 初始化mysql
+	dbgo, err := dbgo.NewMysqlDB(&options.Opts.MySQL)
+	if err != nil {
+		errMsg := "init mysqlClient err: " + err.Error()
+		logger.Error(err.Error())
+		panic(errMsg)
+	}
+	fmt.Println(dbgo)
 
 	// 实例化
 }

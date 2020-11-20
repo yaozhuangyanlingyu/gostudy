@@ -14,3 +14,13 @@ redis:
   host: "localhost:6379"
   password: ""
   db: 1
+
+mysql:
+  host: "127.0.0.1"
+  user: "root"
+  password: "root"
+  port: "3306"
+  db: "shop"
+  max_idle_conns: 10
+  max_open_conns: 10
+  log: true

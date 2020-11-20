@@ -1,6 +1,7 @@
 package options
 
 import (
+	"notify/pkg/dbgo"
 	"notify/pkg/goredis"
 	"notify/pkg/logger"
 )
@@ -12,6 +13,7 @@ type options struct {
 	Server GinServerConfig
 	Log    logger.Config
 	Redis  goredis.Config
+	MySQL  dbgo.Config
 }
 
 // gin服务
