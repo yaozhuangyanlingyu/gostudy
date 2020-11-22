@@ -21,7 +21,6 @@ func NewShortURL(redisGo *redis.Client, dbGo *gorm.DB) *ShortUrl {
 			DbGo:    dbGo,
 		},
 	}
-
 	apiParams := &ShortUrl{
 		Base: &Base{
 			RedisGo: redisGo,
@@ -34,6 +33,7 @@ func NewShortURL(redisGo *redis.Client, dbGo *gorm.DB) *ShortUrl {
 
 func (this *ShortUrl) GenUrl(c *gin.Context) {
 	longUrl := c.Query("long_url")
+	passwd := c.Query("passwd")
 	if len(longUrl) == 0 {
 		c.JSON(200, gin.H{
 			"code": 500001,
@@ -42,11 +42,30 @@ func (this *ShortUrl) GenUrl(c *gin.Context) {
 		})
 		return
 	}
+	if passwd != "plum-url" {
+		c.JSON(200, gin.H{
+			"code": 500001,
+			"msg":  "passwd参数错误",
+			"data": "",
+		})
+		return
+	}
 
 	// 获取返回短链URL
-	url := this.Service.Handle(longUrl)
+	url, err := this.Service.Handle(longUrl)
+	if err != nil {
+		c.JSON(200, gin.H{
+			"code": 500001,
+			"msg":  err.Error(),
+			"data": "",
+		})
+		return
+	}
+
+	// 返回短链数据
 	data := make(map[string]string)
-	data["url"] = url
+	data["short_url"] = url
+	data["long_url"] = longUrl
 	c.JSON(200, gin.H{
 		"code": 200,
 		"msg":  "success",
