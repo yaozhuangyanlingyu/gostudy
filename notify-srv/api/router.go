@@ -1,7 +1,7 @@
 /*
  * @Author: yaoxf
  * @Date: 2020-11-15 19:03:18
- * @LastEditTime: 2020-11-22 23:08:17
+ * @LastEditTime: 2020-11-22 23:30:10
  * @LastEditors: Please set LastEditors
  * @Description: 路由控制
  * @FilePath: \notify-srv\api\router.go
@@ -60,6 +60,7 @@ func (this *Engine) RunEngine() {
 	logger.Info("Start Gin Server...")
 	gin.SetMode(options.Opts.Server.Mode)
 	router := gin.Default()
+	router.Use(logger.GinLogger(), logger.GinRecovery(true))
 
 	// 短链处理
 	shortUrlObj := apiV1.NewShortURL(this.redisGo, this.dbGo)
