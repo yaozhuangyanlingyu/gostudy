@@ -1,7 +1,7 @@
 server:
   read_timeout: 60
   write_timeout: 60
-  http_addr: ":8080"
+  http_addr: ":8888"
   mode: release
   pprof: true
 

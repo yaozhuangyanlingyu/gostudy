@@ -1,3 +1,11 @@
+/*
+ * @Author: yaoxf
+ * @Date: 2020-09-13 14:24:39
+ * @LastEditTime: 2020-11-22 22:33:54
+ * @LastEditors: Please set LastEditors
+ * @Description: 通知相关 - 服务接口
+ * @FilePath: \notify-srv\main.go
+ */
 package main
 
 import (
@@ -5,7 +13,6 @@ import (
 )
 
 func main() {
-	// 初始化路由
 	e := api.Engine{}
 	e.InitRouter()
 	e.RunEngine()

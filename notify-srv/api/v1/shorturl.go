@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"notify/pkg/logger"
 	"notify/service"
 	handleService "notify/service/shorturl"
 
@@ -34,6 +35,7 @@ func NewShortURL(redisGo *redis.Client, dbGo *gorm.DB) *ShortUrl {
 func (this *ShortUrl) GenUrl(c *gin.Context) {
 	longUrl := c.Query("long_url")
 	passwd := c.Query("passwd")
+	logger.Info("request shorturl", longUrl, passwd)
 	if len(longUrl) == 0 {
 		c.JSON(200, gin.H{
 			"code": 500001,

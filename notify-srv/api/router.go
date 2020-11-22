@@ -1,3 +1,11 @@
+/*
+ * @Author: yaoxf
+ * @Date: 2020-11-15 19:03:18
+ * @LastEditTime: 2020-11-22 23:08:17
+ * @LastEditors: Please set LastEditors
+ * @Description: 路由控制
+ * @FilePath: \notify-srv\api\router.go
+ */
 package api
 
 import (
@@ -49,11 +57,13 @@ func (this *Engine) InitRouter() {
 }
 
 func (this *Engine) RunEngine() {
+	logger.Info("Start Gin Server...")
+	gin.SetMode(options.Opts.Server.Mode)
 	router := gin.Default()
 
 	// 短链处理
 	shortUrlObj := apiV1.NewShortURL(this.redisGo, this.dbGo)
 	router.GET("/gen-url", shortUrlObj.GenUrl)
 
-	router.Run()
+	router.Run(options.Opts.Server.HTTPAddr)
 }
