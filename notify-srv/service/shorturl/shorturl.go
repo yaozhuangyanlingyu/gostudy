@@ -11,6 +11,9 @@ type ShortUrlService struct {
 	Base *service.Base
 }
 
+/**
+ * @desc 根据长URL生成短URL
+ */
 func (this *ShortUrlService) Handle(longUrl string) (string, error) {
 	// 判断之前是否生成过
 	existsShortUrl := model.GetShortUrlByLongURL(this.Base.DbGo, longUrl)
