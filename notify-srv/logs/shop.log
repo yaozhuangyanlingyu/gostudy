@@ -1,3 +1,0 @@
-2020-11-22T23:31:28.716+0800	INFO	logger/logger.go:128	Start Gin Server...%!(EXTRA []interface {}=[])
-2020-11-22T23:31:36.274+0800	INFO	logger/logger.go:128	request shorturl%!(EXTRA []interface {}=[http://gorm.book.jasperxu.com/crud.html plum-url])
-2020-11-22T23:31:36.276+0800	INFO	logger/logger.go:128	/gen-url%!(EXTRA []interface {}=[{status 11 200  <nil>} {method 15 0 GET <nil>} {path 15 0 /gen-url <nil>} {query 15 0 long_url=http%3A%2F%2Fgorm.book.jasperxu.com%2Fcrud.html&passwd=plum-url <nil>} {ip 15 0 127.0.0.1 <nil>} {user-agent 15 0 Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36 <nil>} {errors 15 0  <nil>} {cost 8 2000100  <nil>}])
