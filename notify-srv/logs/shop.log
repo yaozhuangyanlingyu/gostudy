@@ -11,3 +11,4 @@
 2020-11-21T00:56:08.550+0800	INFO	logger/logger.go:50	starting service...%!(EXTRA []interface {}=[])
 2020-11-21T01:16:14.455+0800	ERROR	logger/logger.go:58	init redisClient err: dial tcp [::1]:6379: connectex: No connection could be made because the target machine actively refused it.%!(EXTRA []interface {}=[])
 2020-11-21T01:19:10.352+0800	ERROR	logger/logger.go:58	init redisClient err: dial tcp [::1]:6379: connectex: No connection could be made because the target machine actively refused it.%!(EXTRA []interface {}=[])
+2020-11-22T11:45:02.540+0800	ERROR	logger/logger.go:58	init redisClient err: dial tcp [::1]:6379: connectex: No connection could be made because the target machine actively refused it.%!(EXTRA []interface {}=[])

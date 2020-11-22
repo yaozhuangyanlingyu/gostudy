@@ -1,7 +1,8 @@
 package v1
 
 import (
-	sShortUrl "notify/service/shorturl"
+	"notify/service"
+	handleService "notify/service/shorturl"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
@@ -9,17 +10,26 @@ import (
 )
 
 type ShortUrl struct {
-	base *Base
+	Base    *Base
+	Service *handleService.ShortUrlService
 }
 
-func NewShortUrl(redisGo *redis.Client, dbGo *gorm.DB) *ShortUrl {
-	shortUrlObj := &ShortUrl{
-		&Base{
-			redisGo: redisGo,
-			dbGo:    dbGo,
+func NewShortURL(redisGo *redis.Client, dbGo *gorm.DB) *ShortUrl {
+	service := &handleService.ShortUrlService{
+		Base: &service.Base{
+			RedisGo: redisGo,
+			DbGo:    dbGo,
 		},
 	}
-	return shortUrlObj
+
+	apiParams := &ShortUrl{
+		Base: &Base{
+			RedisGo: redisGo,
+			DbGo:    dbGo,
+		},
+		Service: service,
+	}
+	return apiParams
 }
 
 func (this *ShortUrl) GenUrl(c *gin.Context) {
@@ -34,7 +44,7 @@ func (this *ShortUrl) GenUrl(c *gin.Context) {
 	}
 
 	// 获取返回短链URL
-	url := sShortUrl.Handle(longUrl)
+	url := this.Service.Handle(longUrl)
 	data := make(map[string]string)
 	data["url"] = url
 	c.JSON(200, gin.H{

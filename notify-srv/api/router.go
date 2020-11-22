@@ -1,8 +1,7 @@
 package api
 
 import (
-	"fmt"
-	v1 "notify/api/v1"
+	apiV1 "notify/api/v1"
 	"notify/pkg/config"
 	"notify/pkg/dbgo"
 	"notify/pkg/goredis"
@@ -10,10 +9,13 @@ import (
 	"notify/pkg/options"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis/v8"
+	"github.com/jinzhu/gorm"
 )
 
 type Engine struct {
-	shortUrlObj *v1.ShortUrl
+	redisGo *redis.Client
+	dbGo    *gorm.DB
 }
 
 func (this *Engine) InitRouter() {
@@ -34,7 +36,7 @@ func (this *Engine) InitRouter() {
 		logger.Error(errMsg)
 		panic(errMsg)
 	}
-	fmt.Println(redisGo)
+	this.redisGo = redisGo
 
 	// 初始化mysql
 	dbGo, err := dbgo.NewMysqlDB(&options.Opts.MySQL)
@@ -43,15 +45,15 @@ func (this *Engine) InitRouter() {
 		logger.Error(err.Error())
 		panic(errMsg)
 	}
-	fmt.Println(dbGo)
-
-	// 实例化
-	shortUrlObj := v1.NewShortUrl(redisGo, dbGo)
-	this.shortUrlObj = shortUrlObj
+	this.dbGo = dbGo
 }
 
 func (this *Engine) RunEngine() {
 	router := gin.Default()
-	router.GET("/gen-url", this.shortUrlObj.GenUrl)
+
+	// 短链处理
+	shortUrlObj := apiV1.NewShortURL(this.redisGo, this.dbGo)
+	router.GET("/gen-url", shortUrlObj.GenUrl)
+
 	router.Run()
 }
