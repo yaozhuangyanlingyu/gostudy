@@ -13,7 +13,7 @@ import (
 )
 
 type Engine struct {
-	genShortUrl *v1.GenShortUrl
+	shortUrlObj *v1.ShortUrl
 }
 
 func (this *Engine) InitRouter() {
@@ -28,36 +28,30 @@ func (this *Engine) InitRouter() {
 	logger.SetupLogger(&options.Opts.Log)
 
 	// 初始化redis
-	redisClient, err := goredis.NewRedis(&options.Opts.Redis)
+	redisGo, err := goredis.NewRedis(&options.Opts.Redis)
 	if err != nil {
 		errMsg := "init redisClient err: " + err.Error()
 		logger.Error(errMsg)
 		panic(errMsg)
 	}
-	fmt.Println(redisClient)
+	fmt.Println(redisGo)
 
 	// 初始化mysql
-	dbgo, err := dbgo.NewMysqlDB(&options.Opts.MySQL)
+	dbGo, err := dbgo.NewMysqlDB(&options.Opts.MySQL)
 	if err != nil {
 		errMsg := "init mysqlClient err: " + err.Error()
 		logger.Error(err.Error())
 		panic(errMsg)
 	}
-	fmt.Println(dbgo)
+	fmt.Println(dbGo)
 
 	// 实例化
-}
-
-func Hello(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"code": 500001,
-		"msg":  "long_url参数不能为空",
-		"data": "",
-	})
+	shortUrlObj := v1.NewShortUrl(redisGo, dbGo)
+	this.shortUrlObj = shortUrlObj
 }
 
 func (this *Engine) RunEngine() {
 	router := gin.Default()
-	router.GET("/hello", Hello)
+	router.GET("/gen-url", this.shortUrlObj.GenUrl)
 	router.Run()
 }

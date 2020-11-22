@@ -4,13 +4,25 @@ import (
 	sShortUrl "notify/service/shorturl"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis/v8"
+	"github.com/jinzhu/gorm"
 )
 
-type GenShortUrl interface {
-	Gen(string) (string, error)
+type ShortUrl struct {
+	base *Base
 }
 
-func GenUrl(c *gin.Context) {
+func NewShortUrl(redisGo *redis.Client, dbGo *gorm.DB) *ShortUrl {
+	shortUrlObj := &ShortUrl{
+		&Base{
+			redisGo: redisGo,
+			dbGo:    dbGo,
+		},
+	}
+	return shortUrlObj
+}
+
+func (this *ShortUrl) GenUrl(c *gin.Context) {
 	longUrl := c.Query("long_url")
 	if len(longUrl) == 0 {
 		c.JSON(200, gin.H{
