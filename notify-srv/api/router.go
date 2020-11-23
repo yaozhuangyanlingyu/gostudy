@@ -1,7 +1,7 @@
 /*
  * @Author: yaoxf
  * @Date: 2020-11-15 19:03:18
- * @LastEditTime: 2020-11-22 23:30:10
+ * @LastEditTime: 2020-11-23 01:37:47
  * @LastEditors: Please set LastEditors
  * @Description: 路由控制
  * @FilePath: \notify-srv\api\router.go
@@ -9,16 +9,20 @@
 package api
 
 import (
+	"context"
+	"net/http"
 	apiV1 "notify/api/v1"
 	"notify/pkg/config"
 	"notify/pkg/dbgo"
 	"notify/pkg/goredis"
 	"notify/pkg/logger"
 	"notify/pkg/options"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
 	"github.com/jinzhu/gorm"
+	"go.uber.org/zap"
 )
 
 type Engine struct {
@@ -56,15 +60,41 @@ func (this *Engine) InitRouter() {
 	this.dbGo = dbGo
 }
 
+// timeout middleware wraps the request context with a timeout
+func timeoutMiddleware(timeout time.Duration) func(c *gin.Context) {
+	return func(c *gin.Context) {
+
+		// wrap the request context with a timeout
+		ctx, cancel := context.WithTimeout(c.Request.Context(), timeout)
+
+		defer func() {
+			// check if context timeout was reached
+			if ctx.Err() == context.DeadlineExceeded {
+
+				// write response and abort the request
+				c.Writer.WriteHeader(http.StatusGatewayTimeout)
+				c.Abort()
+			}
+
+			//cancel to clear resources after finished
+			cancel()
+		}()
+
+		// replace request with context wrapped request
+		c.Request = c.Request.WithContext(ctx)
+		c.Next()
+	}
+}
+
 func (this *Engine) RunEngine() {
-	logger.Info("Start Gin Server...")
 	gin.SetMode(options.Opts.Server.Mode)
 	router := gin.Default()
-	router.Use(logger.GinLogger(), logger.GinRecovery(true))
+	router.Use(logger.GinLogger(), logger.GinRecovery(true), timeoutMiddleware(time.Second*2))
 
 	// 短链处理
 	shortUrlObj := apiV1.NewShortURL(this.redisGo, this.dbGo)
 	router.GET("/gen-url", shortUrlObj.GenUrl)
 
+	logger.Info("Start Gin Server listening", zap.String("addr", options.Opts.Server.HTTPAddr))
 	router.Run(options.Opts.Server.HTTPAddr)
 }
