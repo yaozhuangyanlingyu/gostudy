@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"demo04/greeter"
+	proto "demo01/greeter"
 	"log"
 
 	"github.com/micro/go-micro"
@@ -10,7 +10,7 @@ import (
 
 type Greeter struct{}
 
-func (g *Greeter) Hello(ctx context.Context, req *greeter.HelloRequest, rsp *greeter.HelloResponse) error {
+func (g *Greeter) Hello(ctx context.Context, req *proto.HelloRequest, rsp *proto.HelloResponse) error {
 	rsp.Greeting = "Hello " + req.Name
 	return nil
 }
@@ -20,7 +20,7 @@ func main() {
 		micro.Name("aplum_shop"),
 	)
 	service.Init()
-	greeter.RegisterGreeterHandler(service.Server(), new(Greeter))
+	proto.RegisterGreeterHandler(service.Server(), new(Greeter))
 	if err := service.Run(); err != nil {
 		log.Fatal(err)
 	}
