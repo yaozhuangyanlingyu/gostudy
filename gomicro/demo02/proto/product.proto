@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package proto;
+
+// 商品模块
+service Product {
+    // 根据商品ID获取商品信息
+    rpc GetProductByID(GetProductByIDRequest) returns(GetProductByIDResponse){}
+}
+
+// 商品模块 - 请求参数
+message GetProductByIDRequest {
+    int64   pid = 1;
+}
+
+// 商品模块 - 返回参数
+message GetProductByIDResponse {
+    int64   code    = 1;
+    string  msg     = 2;
+    GetProductByIDResponseData data    = 3;
+}
+message GetProductByIDResponseData {
+    int64   pid     = 1;
+    string  name    = 2;
+}
+
+
