@@ -15,7 +15,6 @@ func main() {
 	)
 	service.Init()
 	productSrv := proto.NewProductClient("product-srv", service.Client())
-
 	rsp, err := productSrv.GetProductByID(context.TODO(), &proto.GetProductByIDRequest{
 		Pid: 8888,
 	})
