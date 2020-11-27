@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	// Create a new service. Optionally include some options here.
 	service := micro.NewService(
 		micro.Name("product-srv"),
 		micro.Version("product-v0.0.1"),
