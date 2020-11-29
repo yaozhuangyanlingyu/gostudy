@@ -11,5 +11,8 @@ func main() {
 	server.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("hello go micro"))
 	})
+	server.HandleFunc("/shop", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("shop api"))
+	})
 	_ = server.Run()
 }
