@@ -1,26 +1,15 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/micro/go-micro/web"
+	"net/http"
 )
 
 func main() {
-	/*
-		addr := func(o *web.Options) {
-			o.Address = ":8001"
-		}
-		service := web.NewService(addr)
-		service.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
-			writer.Write([]byte("Hello world"))
-		})
-		service.Run()
-	*/
 
-	service := web.NewService(web.Address(":8001"))
-	service.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
-		writer.Write([]byte("Hello world"))
+	server := web.NewService(web.Address(":8081")) // ??
+	server.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("hello go micro"))
 	})
-	service.Run()
+	_ = server.Run()
 }
