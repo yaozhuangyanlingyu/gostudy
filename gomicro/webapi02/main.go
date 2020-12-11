@@ -1,9 +1,10 @@
 package main
 
-import(
-	"github.com/micro/go-micro/web"
+import (
 	"net/http"
+
 	"github.com/gin-gonic/gin"
+	"github.com/micro/go-micro/web"
 )
 
 func main() {
