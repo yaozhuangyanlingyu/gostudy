@@ -9,6 +9,9 @@ import (
 	"github.com/micro/go-plugins/registry/consul"
 )
 
+/**
+ * 商品API
+ */
 func main() {
 	// 将服务注册到consul
 	consulReg := consul.NewRegistry(
