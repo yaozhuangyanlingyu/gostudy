@@ -1,7 +1,7 @@
 package main
 
 import (
-	"net/http"
+	"product-srv/ProService"
 
 	"github.com/gin-gonic/gin"
 	"github.com/micro/go-micro/registry"
@@ -17,9 +17,12 @@ func main() {
 
 	// 使用gin路由
 	ginRouter := gin.Default()
-	ginRouter.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello world")
-	})
+	v1 := ginRouter.Group("/v1")
+	{
+		v1.GET("/prods", func(c *gin.Context) {
+			c.JSON(200, ProService.GetProductList(5))
+		})
+	}
 
 	// 启动go micro服务
 	server := web.NewService(
