@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/micro/go-micro/client/selector"
 	"github.com/micro/go-micro/registry"
 	"github.com/micro/go-micro/web"
 	"github.com/micro/go-plugins/registry/consul"
@@ -16,9 +17,7 @@ import (
 /**
  * 通过consul发现商品服务地址
  */
-var productSrvAddrs string
-
-func init() {
+func getProductSrvAddr() string {
 	consulReg := consul.NewRegistry(
 		registry.Addrs("192.168.95.129:8510"),
 	)
@@ -27,17 +26,22 @@ func init() {
 		log.Fatal(err)
 	}
 
+	// 随机选择一个服务
 	/*
-		// 随机选择一个服务
 		next := selector.Random(servs)
 		node, err := next()
 		if err != nil {
 			log.Fatal(err)
 		}*/
 
-	// 轮询选择一个服务
-
-	productSrvAddrs = node.Address
+	// 轮询方式
+	next := selector.RoundRobin(servs)
+	node, err := next()
+	if err != nil {
+		log.Fatal("cannot get services")
+	}
+	fmt.Println(node.Address)
+	return node.Address
 }
 
 type ProModel struct {
@@ -55,7 +59,7 @@ func main() {
 	{
 		v1.GET("/index", func(c *gin.Context) {
 			// 获取商品数据
-			resp, err := http.Get("http://" + productSrvAddrs + "/v1/prods")
+			resp, err := http.Get("http://" + getProductSrvAddr() + "/v1/prods")
 			if err != nil {
 				c.JSON(200, gin.H{
 					"code": 400,
