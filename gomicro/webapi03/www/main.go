@@ -8,7 +8,6 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/micro/go-micro/client/selector"
 	"github.com/micro/go-micro/registry"
 	"github.com/micro/go-micro/web"
 	"github.com/micro/go-plugins/registry/consul"
@@ -27,11 +26,17 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	next := selector.Random(servs)
-	node, err := next()
-	if err != nil {
-		log.Fatal(err)
-	}
+
+	/*
+		// 随机选择一个服务
+		next := selector.Random(servs)
+		node, err := next()
+		if err != nil {
+			log.Fatal(err)
+		}*/
+
+	// 轮询选择一个服务
+
 	productSrvAddrs = node.Address
 }
 
@@ -44,7 +49,6 @@ type ProModel struct {
  * 主站API
  */
 func main() {
-
 	// 使用gin路由
 	ginRouter := gin.Default()
 	v1 := ginRouter.Group("/v1")
@@ -94,7 +98,7 @@ func main() {
 
 	// 启动go micro服务
 	server := web.NewService(
-		web.Address(":8082"),   // 监听IP:端口
+		web.Address(":8888"),   // 监听IP:端口
 		web.Handler(ginRouter), // 使用gin路由
 	)
 	server.Run()
