@@ -1,5 +1,7 @@
 package ProService
 
+import "fmt"
+
 // 商品模型
 type ProModel struct {
 	Pid   int    // 商品ID
@@ -22,7 +24,7 @@ func NewProModel(pid int, pname string) *ProModel {
 func GetProductList(n int) []*ProModel {
 	list := make([]*ProModel, 0)
 	for i := 0; i < n; i++ {
-		list = append(list, NewProModel(i, "商品："+string(i)))
+		list = append(list, NewProModel(i, fmt.Sprintf("华为手机-Note%d", i+1)))
 	}
 	return list
 }
