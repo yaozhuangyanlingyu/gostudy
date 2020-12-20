@@ -9,6 +9,10 @@ import (
 	"github.com/micro/go-plugins/registry/consul"
 )
 
+type ProductRequest struct {
+	Size int `form:"size"`
+}
+
 /**
  * 商品API
  */
@@ -26,7 +30,12 @@ func main() {
 			c.JSON(200, ProService.GetProductList(5))
 		})
 		v1.POST("/prods", func(c *gin.Context) {
-			c.JSON(200, ProService.GetProductList(5))
+			var pr ProductRequest
+			err := c.Bind(&pr)
+			if err != nil || pr.Size <= 0 {
+				pr = ProductRequest{Size: 5}
+			}
+			c.JSON(200, ProService.GetProductList(pr.Size))
 		})
 	}
 
