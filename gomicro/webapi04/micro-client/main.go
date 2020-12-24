@@ -14,8 +14,8 @@ import (
 
 // 商品模型
 type ProModel struct {
-	Pid   int    // 商品ID
-	PName string // 商品名称
+	Pid   int32  // 商品ID
+	Pname string // 商品名称
 }
 
 //重点在这里
@@ -26,7 +26,7 @@ func callAPI(s selector.Selector) []ProModel {
 	)
 
 	//下面这句代码封装了一个请求(未发送)
-	req := myCli.NewRequest("product-service", "/v1/prods", map[string]int{
+	req := myCli.NewRequest("product-service", "/v1/prods", map[string]int32{
 		"size": 10,
 	}) //这里最后一个参数是body，一般用于post请求的参数，因为我们这个api没有参数，所以我随便写了map[string]string{}
 
@@ -50,6 +50,6 @@ func main() {
 	resp := callAPI(mySelector)
 	fmt.Println(resp)
 	for _, v := range resp {
-		fmt.Println("productID:", v.Pid, " productName: ", v.PName)
+		fmt.Println("productID:", v.Pid, " productName: ", v.Pname)
 	}
 }

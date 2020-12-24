@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package proto;
+
+import "product_row.proto"
+
+// 商品模块
+service Product {
+    // 获取商品列表数据
+    rpc GetProductList(GetProductListRequest) returns(GetProductListResponse){};
+}
+
+// 获取商品列表 - 请求参数
+message GetProductListRequest {
+    int size = 1;       // 数据条数
+}
+
+// 获取商品列表 - 返回数据
+message GetProductListResponse {
+    repeated ProductRow data = 1;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package proto;
+
+message ProductRequest {
+    int32 size = 1;
+}
+
+message ProductModel {
+    int32 pid = 1;
+    string pname = 2;
+}
+
+message ProductResponse {
+    repeated ProductModel data = 1;
+}

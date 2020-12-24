@@ -10,7 +10,7 @@ import (
 )
 
 type ProductRequest struct {
-	Size int `form:"size"`
+	Size int32 `form:"size"`
 }
 
 /**
