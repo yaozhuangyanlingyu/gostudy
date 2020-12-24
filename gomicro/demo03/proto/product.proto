@@ -1,8 +1,13 @@
 syntax = "proto3";
 
 package proto;
+option go_package = "proto";
 
-import "product_row.proto"
+// 商品信息
+message ProductRow {
+    int32   ProductID = 1;      // 商品ID
+    string  ProductName = 2;    // 商品名称
+}
 
 // 商品模块
 service Product {
@@ -12,7 +17,7 @@ service Product {
 
 // 获取商品列表 - 请求参数
 message GetProductListRequest {
-    int size = 1;       // 数据条数
+    int32 size = 1;       // 数据条数
 }
 
 // 获取商品列表 - 返回数据

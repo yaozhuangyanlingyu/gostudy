@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-// 商品信息
-message ProductRow {
-    int32   ProductID = 1;      // 商品ID
-    string  ProductName = 2;    // 商品名称
-}
