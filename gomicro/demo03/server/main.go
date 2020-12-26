@@ -7,6 +7,8 @@ import (
 	"log"
 
 	"github.com/micro/go-micro"
+	"github.com/micro/go-micro/registry"
+	"github.com/micro/go-plugins/registry/consul"
 )
 
 /**
@@ -21,7 +23,7 @@ func NewProModel(pid int32, pname string) *proto.ProductRow {
 
 type Product struct{}
 
-func (_this *Product) GetProductByID(ctx context.Context, req *proto.GetProductListRequest, res *proto.GetProductListResponse) error {
+func (_this *Product) GetProductList(ctx context.Context, req *proto.GetProductListRequest, res *proto.GetProductListResponse) error {
 	list := make([]*proto.ProductRow, 0)
 	var i int32 = 0
 	for i = 0; i < 10; i++ {
@@ -32,16 +34,15 @@ func (_this *Product) GetProductByID(ctx context.Context, req *proto.GetProductL
 }
 
 func main() {
-	/*
-		// 将服务注册到consul
-		consulReg := consul.NewRegistry(
-			registry.Addr("192.168.95.129:8510"),
-		)*/
+	// 将服务注册到consul
+	consulReg := consul.NewRegistry(
+		registry.Addrs("dev03.aplum-inc.com:8500"),
+	)
 
 	// 创建micro服务
 	service := micro.NewService(
-		micro.Name("product-srv"),
-		//micro.Registry(consulReg),
+		micro.Name("product-srv-yaoxf"),
+		micro.Registry(consulReg),
 	)
 
 	// 解析命令参数
