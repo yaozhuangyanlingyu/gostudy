@@ -26,7 +26,7 @@ type Product struct{}
 func (_this *Product) GetProductList(ctx context.Context, req *proto.GetProductListRequest, res *proto.GetProductListResponse) error {
 	list := make([]*proto.ProductRow, 0)
 	var i int32 = 0
-	for i = 0; i < 10; i++ {
+	for i = 0; i < req.Size; i++ {
 		list = append(list, NewProModel(i, fmt.Sprintf("华为手机-Note%d", i+1)))
 	}
 	res.Data = list
