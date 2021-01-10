@@ -1,0 +1,11 @@
+syntax = "proto3";
+package cart_types;
+
+option go_package = "proto/cart";
+option php_namespace = "app\\components\\proto\\cart";
+
+// 来源
+enum sourcePlatform {
+    PLUM = 0;       // 红布林APP
+    LIVE = 1;       // 直播APP
+}

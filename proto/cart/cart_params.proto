@@ -1,0 +1,17 @@
+syntax = "proto3";
+package cart_params;
+import "proto/cart/cart_types.proto";
+
+option go_package       = "proto/cart";
+option php_namespace    = "app\\components\\proto\\cart";
+
+message ListRequest {
+    int32                       userID          = 1;
+    string                      keyID           = 2;
+    cart_types.sourcePlatform   sourcePlatform  = 3;
+};
+
+message ListResponse {
+    int64   code    = 1;
+    string  msg     = 2;
+};
