@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/api/list"
-	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/proto/cart"
+	"github.com/yaozhuangyanlingyu/micro-srv/proto/cart"
 )
 
 type Cart struct{}

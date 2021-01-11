@@ -8,8 +8,8 @@ import (
 	"github.com/micro/go-plugins/registry/consul"
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/api"
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/lib/mysql"
-	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/proto/cart"
 	"github.com/yaozhuangyanlingyu/micro-srv/loader"
+	"github.com/yaozhuangyanlingyu/micro-srv/proto/cart"
 )
 
 func init() {

@@ -1,7 +1,7 @@
 package list
 
 import (
-	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/proto/cart"
+	"github.com/yaozhuangyanlingyu/micro-srv/proto/cart"
 )
 
 type List struct {
