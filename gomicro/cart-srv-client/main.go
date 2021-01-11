@@ -7,7 +7,7 @@ import (
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/registry"
 	"github.com/micro/go-plugins/registry/consul"
-	"github.com/yaozhuangyanlingyu/gostudy/proto/cart"
+    "github.com/yaozhuangyanlingyu/gostudy/cart-srv/proto/cart"
 )
 
 func main() {

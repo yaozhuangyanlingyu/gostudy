@@ -24,7 +24,7 @@ message DeleteRequest {
     cart_types.sourcePlatform   sourcePlatform = 4; // 来源平台
 }
 
-message DeleteRespnse {
+message DeleteResponse {
     int64           code    = 1;
     string          msg     = 2;
     repeated cart_types.DeleteProduct deleteProduct = 3;    // 统计用商品数据列表

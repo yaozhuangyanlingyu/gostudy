@@ -391,6 +391,8 @@ github.com/xeipuuv/gojsonschema v1.1.0/go.mod h1:5yf86TLmAcydyeJq5YvxkGPE2fm/u4m
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210110074853-dc0cbfb0bcac h1:+s4smZgYNwqGOdTgHuTq1QY/6u52LxiiS1JigmEEfHk=
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210110074853-dc0cbfb0bcac/go.mod h1:yCTNK4icX8Bo5lYwDN7u963U/Dyxsgnx5eapNXwJ+QI=
+github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210111083842-51dcd009f46e h1:GY8uFjHw8SJePTFf8EES5PF1QKeLj/MBnEOd3ki40Aw=
+github.com/yaozhuangyanlingyu/gostudy/cart-srv v0.0.0-20210111083842-51dcd009f46e h1:mpURaha9LAlrKlXE11Y42inJWys/5BpnXrDY8w8vm+g=
 go.etcd.io/bbolt v1.3.3/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opencensus.io v0.20.1/go.mod h1:6WKK9ahsWS3RSO+PY9ZHZUfv2irvY6gN279GOPZjmmk=
 go.opencensus.io v0.20.2/go.mod h1:6WKK9ahsWS3RSO+PY9ZHZUfv2irvY6gN279GOPZjmmk=
