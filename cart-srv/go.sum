@@ -449,6 +449,8 @@ github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210110074853-dc0cbfb0bcac/go.mod 
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210110101557-148399c3ca9b h1:N6zeiweZCSS58r1IwS0XRJy6OX758Ohw6Jj2zaiuKzw=
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210110171157-bc288129c5af h1:HoxhowCKCTq8fE69kD8jjmDm2COPnWxuiI7rFPUVsDQ=
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210110171157-bc288129c5af/go.mod h1:yCTNK4icX8Bo5lYwDN7u963U/Dyxsgnx5eapNXwJ+QI=
+github.com/yaozhuangyanlingyu/micro-srv v0.0.0-20210111035334-261d0ff20b4a h1:u9yZWPXLctzPGPQYlvtVfVM7XmUvLJo0KwFpji3wL08=
+github.com/yaozhuangyanlingyu/micro-srv v0.0.0-20210111035334-261d0ff20b4a/go.mod h1:54p4NquMaoqb5UDYA0d4nCNrvYcKVd4CLTOOyWCotU0=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.etcd.io/bbolt v1.3.3/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opencensus.io v0.20.1/go.mod h1:6WKK9ahsWS3RSO+PY9ZHZUfv2irvY6gN279GOPZjmmk=
