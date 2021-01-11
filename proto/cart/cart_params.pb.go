@@ -25,6 +25,7 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+// 列表接口
 type ListRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -143,6 +144,141 @@ func (x *ListResponse) GetMsg() string {
 	return ""
 }
 
+// 删除商品接口
+type DeleteRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserID         int32          `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty"`                                                // 用户ID
+	ProductID      []int32        `protobuf:"varint,2,rep,packed,name=productID,proto3" json:"productID,omitempty"`                                   // 商品ID
+	KeyID          string         `protobuf:"bytes,3,opt,name=keyID,proto3" json:"keyID,omitempty"`                                                   // 没有登录时用户身份标识
+	SourcePlatform SourcePlatform `protobuf:"varint,4,opt,name=sourcePlatform,proto3,enum=cart_types.SourcePlatform" json:"sourcePlatform,omitempty"` // 来源平台
+}
+
+func (x *DeleteRequest) Reset() {
+	*x = DeleteRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_cart_cart_params_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRequest) ProtoMessage() {}
+
+func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_cart_cart_params_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return file_proto_cart_cart_params_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *DeleteRequest) GetUserID() int32 {
+	if x != nil {
+		return x.UserID
+	}
+	return 0
+}
+
+func (x *DeleteRequest) GetProductID() []int32 {
+	if x != nil {
+		return x.ProductID
+	}
+	return nil
+}
+
+func (x *DeleteRequest) GetKeyID() string {
+	if x != nil {
+		return x.KeyID
+	}
+	return ""
+}
+
+func (x *DeleteRequest) GetSourcePlatform() SourcePlatform {
+	if x != nil {
+		return x.SourcePlatform
+	}
+	return SourcePlatform_PLUM
+}
+
+type DeleteRespnse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code          int64            `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg           string           `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	DeleteProduct []*DeleteProduct `protobuf:"bytes,3,rep,name=deleteProduct,proto3" json:"deleteProduct,omitempty"` // 统计用商品数据列表
+}
+
+func (x *DeleteRespnse) Reset() {
+	*x = DeleteRespnse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_cart_cart_params_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteRespnse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteRespnse) ProtoMessage() {}
+
+func (x *DeleteRespnse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_cart_cart_params_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteRespnse.ProtoReflect.Descriptor instead.
+func (*DeleteRespnse) Descriptor() ([]byte, []int) {
+	return file_proto_cart_cart_params_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *DeleteRespnse) GetCode() int64 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *DeleteRespnse) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *DeleteRespnse) GetDeleteProduct() []*DeleteProduct {
+	if x != nil {
+		return x.DeleteProduct
+	}
+	return nil
+}
+
 var File_proto_cart_cart_params_proto protoreflect.FileDescriptor
 
 var file_proto_cart_cart_params_proto_rawDesc = []byte{
@@ -161,11 +297,28 @@ var file_proto_cart_cart_params_proto_rawDesc = []byte{
 	0x65, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x22, 0x34, 0x0a, 0x0c, 0x4c, 0x69, 0x73,
 	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64,
 	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a,
-	0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x42,
-	0x28, 0x5a, 0x0a, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x61, 0x72, 0x74, 0xca, 0x02, 0x19,
-	0x61, 0x70, 0x70, 0x5c, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x73, 0x5c, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x5c, 0x63, 0x61, 0x72, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x22,
+	0x9f, 0x01, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x16, 0x0a, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x44, 0x12, 0x1c, 0x0a, 0x09, 0x70, 0x72, 0x6f,
+	0x64, 0x75, 0x63, 0x74, 0x49, 0x44, 0x18, 0x02, 0x20, 0x03, 0x28, 0x05, 0x52, 0x09, 0x70, 0x72,
+	0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x44, 0x12, 0x14, 0x0a, 0x05, 0x6b, 0x65, 0x79, 0x49, 0x44,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6b, 0x65, 0x79, 0x49, 0x44, 0x12, 0x42, 0x0a,
+	0x0e, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1a, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x5f, 0x74, 0x79, 0x70,
+	0x65, 0x73, 0x2e, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72,
+	0x6d, 0x52, 0x0e, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72,
+	0x6d, 0x22, 0x76, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6e,
+	0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x73, 0x67, 0x12, 0x3f, 0x0a, 0x0d, 0x64, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x19, 0x2e, 0x63, 0x61, 0x72, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x44, 0x65, 0x6c,
+	0x65, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x0d, 0x64, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x42, 0x28, 0x5a, 0x0a, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2f, 0x63, 0x61, 0x72, 0x74, 0xca, 0x02, 0x19, 0x61, 0x70, 0x70, 0x5c, 0x63, 0x6f,
+	0x6d, 0x70, 0x6f, 0x6e, 0x65, 0x6e, 0x74, 0x73, 0x5c, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x5c, 0x63,
+	0x61, 0x72, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -180,19 +333,24 @@ func file_proto_cart_cart_params_proto_rawDescGZIP() []byte {
 	return file_proto_cart_cart_params_proto_rawDescData
 }
 
-var file_proto_cart_cart_params_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_cart_cart_params_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_proto_cart_cart_params_proto_goTypes = []interface{}{
-	(*ListRequest)(nil),  // 0: cart_params.ListRequest
-	(*ListResponse)(nil), // 1: cart_params.ListResponse
-	(SourcePlatform)(0),  // 2: cart_types.sourcePlatform
+	(*ListRequest)(nil),   // 0: cart_params.ListRequest
+	(*ListResponse)(nil),  // 1: cart_params.ListResponse
+	(*DeleteRequest)(nil), // 2: cart_params.DeleteRequest
+	(*DeleteRespnse)(nil), // 3: cart_params.DeleteRespnse
+	(SourcePlatform)(0),   // 4: cart_types.sourcePlatform
+	(*DeleteProduct)(nil), // 5: cart_types.DeleteProduct
 }
 var file_proto_cart_cart_params_proto_depIdxs = []int32{
-	2, // 0: cart_params.ListRequest.sourcePlatform:type_name -> cart_types.sourcePlatform
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 0: cart_params.ListRequest.sourcePlatform:type_name -> cart_types.sourcePlatform
+	4, // 1: cart_params.DeleteRequest.sourcePlatform:type_name -> cart_types.sourcePlatform
+	5, // 2: cart_params.DeleteRespnse.deleteProduct:type_name -> cart_types.DeleteProduct
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_proto_cart_cart_params_proto_init() }
@@ -226,6 +384,30 @@ func file_proto_cart_cart_params_proto_init() {
 				return nil
 			}
 		}
+		file_proto_cart_cart_params_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_cart_cart_params_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteRespnse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -233,7 +415,7 @@ func file_proto_cart_cart_params_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_cart_cart_params_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
