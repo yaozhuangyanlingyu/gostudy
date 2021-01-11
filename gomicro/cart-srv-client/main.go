@@ -35,7 +35,7 @@ func main() {
 
 // 删除
 func _delete(cartSrv cart.CartService) {
-    pids := []int32{110483}
+    pids := []int32{110483, 1159871}
     req := cart.DeleteRequest{
         UserID : 46399747,
         ProductID : pids,
