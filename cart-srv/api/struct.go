@@ -2,8 +2,8 @@ package api
 
 import (
 	"context"
-	"fmt"
 
+	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/api/delete"
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/api/list"
 	"github.com/yaozhuangyanlingyu/micro-srv/proto/cart"
 )
@@ -26,6 +26,10 @@ func (_this *Cart) List(ctx context.Context, req *cart.ListRequest, rsp *cart.Li
 func (_this *Cart) Delete(ctx context.Context, req *cart.DeleteRequest, rsp *cart.DeleteResponse) error {
 	rsp.Code = 200
 	rsp.Msg = "success"
-	fmt.Println("hello world")
+
+	handle := new(delete.Delete)
+	handle.Req = req
+	handle.Rsp = rsp
+	handle.Handle()
 	return nil
 }

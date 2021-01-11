@@ -393,6 +393,10 @@ github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210110074853-dc0cbfb0bcac h1:+s4s
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210110074853-dc0cbfb0bcac/go.mod h1:yCTNK4icX8Bo5lYwDN7u963U/Dyxsgnx5eapNXwJ+QI=
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210111083842-51dcd009f46e h1:GY8uFjHw8SJePTFf8EES5PF1QKeLj/MBnEOd3ki40Aw=
 github.com/yaozhuangyanlingyu/gostudy/cart-srv v0.0.0-20210111083842-51dcd009f46e h1:mpURaha9LAlrKlXE11Y42inJWys/5BpnXrDY8w8vm+g=
+github.com/yaozhuangyanlingyu/micro-srv v0.0.0-20210111091023-96e467490e78 h1:EoaAMixa6xfK3n6iVXrKE7knZuOvbOtrZMhdSElXx7Q=
+github.com/yaozhuangyanlingyu/micro-srv v0.0.0-20210111091023-96e467490e78/go.mod h1:54p4NquMaoqb5UDYA0d4nCNrvYcKVd4CLTOOyWCotU0=
+github.com/yaozhuangyanlingyu/micro-srv v0.0.0-20210111101501-ea4cd8112885 h1:TrAJDIOOuXaQDtR8QvCqyi78l9d7ck05/jKpwreaZwk=
+github.com/yaozhuangyanlingyu/micro-srv v0.0.0-20210111101501-ea4cd8112885/go.mod h1:54p4NquMaoqb5UDYA0d4nCNrvYcKVd4CLTOOyWCotU0=
 go.etcd.io/bbolt v1.3.3/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opencensus.io v0.20.1/go.mod h1:6WKK9ahsWS3RSO+PY9ZHZUfv2irvY6gN279GOPZjmmk=
 go.opencensus.io v0.20.2/go.mod h1:6WKK9ahsWS3RSO+PY9ZHZUfv2irvY6gN279GOPZjmmk=
