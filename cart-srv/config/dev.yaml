@@ -5,4 +5,15 @@ server:
 consul:
   address: "dev03.aplum-inc.com:8500"
 
-
+aplumDB:
+  user: aplum
+  password: plum2016
+  host: 127.0.0.1
+  port: 3306
+  db: aplum
+  charset: utf8
+  parsetime: "true"
+  loc: Local
+  timeout: 15s
+  readTimeout: 10s
+  writeTimeout: 10s

@@ -7,13 +7,20 @@ import (
 	"github.com/micro/go-micro/registry"
 	"github.com/micro/go-plugins/registry/consul"
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/api"
+	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/lib/mysql"
 	"github.com/yaozhuangyanlingyu/gostudy/proto/cart"
 	"github.com/yaozhuangyanlingyu/micro-srv/loader"
 )
 
-func main() {
+func init() {
+	// 加载配置文件
 	loader.LoadConfig("")
 
+	// 初始化数据库
+	mysql.InitDB()
+}
+
+func main() {
 	// 将服务注册到consul
 	consulReg := consul.NewRegistry(
 		registry.Addrs(loader.Config.GetString("consul.address")),
