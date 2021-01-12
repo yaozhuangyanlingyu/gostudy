@@ -2,7 +2,6 @@ package api
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/api/delete"
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/api/list"
@@ -32,8 +31,6 @@ func (_this *Cart) Delete(ctx context.Context, req *cart.DeleteRequest, rsp *car
 	handle.Req = req
 	handle.Rsp = rsp
 	handle.Handle()
-
-	fmt.Println(rsp.Code, rsp.Msg)
 
 	return nil
 }
