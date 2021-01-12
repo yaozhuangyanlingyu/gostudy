@@ -1,9 +1,8 @@
 package delete
 
 import (
-	"fmt"
-
 	cartModel "github.com/yaozhuangyanlingyu/gostudy/cart-srv/model/cart"
+	cartNologinModel "github.com/yaozhuangyanlingyu/gostudy/cart-srv/model/cartnologin"
 	"github.com/yaozhuangyanlingyu/micro-srv/proto/cart"
 )
 
@@ -13,19 +12,19 @@ type Delete struct {
 }
 
 func (_this *Delete) Handle() {
+	var err error
 	userID := _this.Req.GetUserID()
 	keyID := _this.Req.GetKeyID()
 	productID := _this.Req.GetProductID()
-	sourcePlatform := _this.Req.GetSourcePlatform()
 
-	// 查询数据库数据
+	// 删除数据库数据
 	if userID > 0 {
-		err := cartModel.DeleteCartByPid(userID, productID)
-		if err != nil {
-			fmt.Println(err)
-		}
+		err = cartModel.DeleteCartByProductid(userID, productID)
 	} else {
-
+		err = cartNologinModel.DeleteCartByProductid(keyID, productID)
 	}
-	fmt.Println(userID, keyID, productID, sourcePlatform)
+	if err != nil {
+		_this.Rsp.Code = 50000
+		_this.Rsp.Msg = err.Error()
+	}
 }

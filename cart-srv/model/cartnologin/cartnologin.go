@@ -1,4 +1,4 @@
-package cart
+package cartnologin
 
 import (
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/lib/mysql"
@@ -6,7 +6,7 @@ import (
 )
 
 // 根据商品ID删除购物车数据
-func DeleteCartByProductid(userID int32, productID []int32) error {
+func DeleteCartByProductid(KeyID string, productID []int32) error {
 	plumDB := mysql.GetAplumDB()
-	return plumDB.Where("product_id in(?) AND user_id = ?", productID, userID).Delete(&aplum.TCart{}).Error
+	return plumDB.Where("product_id in(?) AND key_id = ?", productID, KeyID).Delete(&aplum.TCartNologin{}).Error
 }

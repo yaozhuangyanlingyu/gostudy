@@ -550,6 +550,8 @@ github.com/xlab/treeprint v0.0.0-20181112141820-a009c3971eca/go.mod h1:ce1O1j6Ut
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210111072803-e52f251e9bb6 h1:752EO1UjY6q6NLPmsQ+8+zFVuzxbWL5Nkjixs94odKQ=
 github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210111072803-e52f251e9bb6/go.mod h1:yCTNK4icX8Bo5lYwDN7u963U/Dyxsgnx5eapNXwJ+QI=
+github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210112092825-944df317ef74 h1:HVQ0XV++o2NuTOKXsUWptyMZI0KsA08BlCgvoTEV704=
+github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210112092825-944df317ef74/go.mod h1:yCTNK4icX8Bo5lYwDN7u963U/Dyxsgnx5eapNXwJ+QI=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.etcd.io/bbolt v1.3.3/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.etcd.io/bbolt v1.3.4/go.mod h1:G5EMThwa9y8QZGBClrRx5EY+Yw9kAhnjy3bSjsnlVTQ=
