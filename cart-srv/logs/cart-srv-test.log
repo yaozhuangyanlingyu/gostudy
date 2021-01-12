@@ -1,0 +1,1 @@
+{"level":"info","time":"2021-01-12T17:26:31.261+0800","linenum":"/home/yaoxiaofeng/test/micro-srv/logger/logger.go:64","msg":"REQUEST","serviceName":"cart-srv-test","method":"Cart.Delete","body":{"userID":46399747,"productID":[110483,1159871]},"request_time":0}
