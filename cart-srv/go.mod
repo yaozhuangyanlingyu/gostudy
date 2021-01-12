@@ -7,6 +7,7 @@ require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/micro/go-micro v1.18.0
 	github.com/micro/go-plugins/registry/consul v0.0.0-20200119172437-4fe21aa238fd // indirect
+	github.com/micro/go-plugins/registry/consul/v2 v2.9.1 // indirect
 	github.com/spf13/viper v1.7.1 // indirect
 	github.com/yaozhuangyanlingyu/gostudy v0.0.0-20210111072803-e52f251e9bb6
 	github.com/yaozhuangyanlingyu/micro-srv v0.0.0-20210111035334-261d0ff20b4a

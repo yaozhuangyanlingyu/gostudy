@@ -4,10 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-plugins/registry/consul"
-    "github.com/yaozhuangyanlingyu/micro-srv/proto/cart"
+	"github.com/yaozhuangyanlingyu/micro-srv/proto/cart"
+
+	"github.com/micro/go-micro/v2"
+	"github.com/micro/go-micro/v2/registry"
+	"github.com/micro/go-plugins/registry/consul/v2"
 )
 
 func main() {
@@ -26,22 +27,22 @@ func main() {
 		myService.Client(),
 	)
 
-    // 列表
-    //_list(cartSrv)
+	// 列表
+	//_list(cartSrv)
 
-    // 删除
-    _delete(cartSrv)
+	// 删除
+	_delete(cartSrv)
 }
 
 // 删除
 func _delete(cartSrv cart.CartService) {
-    pids := []int32{110483, 1159871}
-    req := cart.DeleteRequest{
-        UserID : 46399747,
-        ProductID : pids,
-        KeyID : "",
+	pids := []int32{110483, 1159871}
+	req := cart.DeleteRequest{
+		UserID:         46399747,
+		ProductID:      pids,
+		KeyID:          "",
 		SourcePlatform: cart.SourcePlatform_PLUM, // 来源平台
-    }
+	}
 	rsp, err := cartSrv.Delete(context.Background(), &req)
 	if err != nil {
 		fmt.Println(err.Error())

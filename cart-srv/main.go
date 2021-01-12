@@ -3,13 +3,11 @@ package main
 import (
 	"log"
 
-	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-plugins/registry/consul"
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/api"
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/lib/mysql"
 	"github.com/yaozhuangyanlingyu/micro-srv/loader"
 	"github.com/yaozhuangyanlingyu/micro-srv/proto/cart"
+	"github.com/yaozhuangyanlingyu/micro-srv/server"
 )
 
 func init() {
@@ -21,17 +19,12 @@ func init() {
 }
 
 func main() {
-	// 将服务注册到consul
-	consulReg := consul.NewRegistry(
-		registry.Addrs(loader.Config.GetString("consul.address")),
-	)
-
-	// 创建micro服务
-	service := micro.NewService(
-		micro.Name(loader.Config.GetString("server.name")),
-		micro.Registry(consulReg),
-		micro.Address(loader.Config.GetString("server.address")),
-	)
+	// 创建service
+	service := server.NewAplumService(server.AplumServiceConfig{
+		ServiceName: loader.Config.GetString("server.name"),
+		ServiceAddr: loader.Config.GetString("server.address"),
+		ConsulAddr:  loader.Config.GetString("consul.address"),
+	})
 
 	// 解析命令参数
 	service.Init()

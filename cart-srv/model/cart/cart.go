@@ -2,7 +2,7 @@ package cart
 
 import (
 	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/lib/mysql"
-	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/model/orm/aplum"
+	"github.com/yaozhuangyanlingyu/gostudy/cart-srv/orm/aplum"
 )
 
 // 根据商品ID删除购物车数据
