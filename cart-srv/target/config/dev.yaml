@@ -1,0 +1,19 @@
+server:
+  address: "0.0.0.0:8841"
+  name: "cart-srv-test"
+
+consul:
+  address: "dev03.aplum-inc.com:8500"
+
+aplumDB:
+  user: aplum
+  password: plum2016
+  host: 192.168.0.63
+  port: 3306
+  db: aplum
+  charset: utf8
+  parsetime: "true"
+  loc: Local
+  timeout: 15s
+  readTimeout: 10s
+  writeTimeout: 10s

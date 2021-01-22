@@ -4,22 +4,25 @@ import (
 	"fmt"
 )
 
-type Order struct {
-	ordId      int
-	customerId int
-	callback   func()
+type TransInfo struct {
+	ID int32
+}
+
+type Fragment interface{
+	Exec(transInfo *TransInfo) error
+}
+
+type GetPodAction struct{}
+
+func (g GetPodAction) Exec(transInfo *TransInfo) error {
+	return nil
 }
 
 func main() {
-	var i interface{}
-	i = Order{
-		ordId:      456,
-		customerId: 56,
-	}
-	value, ok := i.(Order)
-	if !ok {
-		fmt.Println("It's not ok for type Order")
-		return
-	}
-	fmt.Println("The value is ", value)
+	var a Fragment = new(GetPodAction)
+	fmt.Println(a)
 }
+
+
+
+
