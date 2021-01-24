@@ -1,0 +1,19 @@
+syntax="proto3";
+
+package proto;
+
+// 请求参数
+message ProductRequest{
+    string pid=1;
+}
+
+// 返回参数
+message ProductResponse{
+    string pid=1;
+    string status=2;
+}
+
+service Product{
+    rpc GetProduct(ProductRequest)returns(ProductResponse){}
+}
+
