@@ -7,10 +7,23 @@ message ProductRequest{
     string pid=1;
 }
 
+message User{
+    int32   uid=1;          // 用户ID
+    string  name=2;         // 用户姓名
+}
+
+enum Status{
+    draft       = 1;    // 草稿
+    onsale      = 2;    // 在售
+    sold        = 3;    // 已售
+    sendback    = 4;    // 回寄
+}
+
 // 返回参数
 message ProductResponse{
-    string pid=1;
-    string status=2;
+    string        pid       = 1;
+    Status        status    = 2;
+    repeated User users     = 3;
 }
 
 service Product{
