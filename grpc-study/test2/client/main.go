@@ -22,5 +22,5 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(res.Pid, res.Status)
+	fmt.Println(res)
 }
