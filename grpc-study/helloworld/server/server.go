@@ -25,6 +25,7 @@ func main() {
 		fmt.Printf("failed to listen: %v", err)
 		return
 	}
+	fmt.Println("start server listen port :8972")
 	s := grpc.NewServer()                  // 创建gRPC服务器
 	pb.RegisterGreeterServer(s, &server{}) // 在gRPC服务端注册服务
 
