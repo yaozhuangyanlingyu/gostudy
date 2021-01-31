@@ -1,14 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
 
-func findK(arr []int, k int) int {
-
-	return int(3)
-}
+	"github.com/golang/protobuf/ptypes/timestamp"
+)
 
 func main() {
-	arr := []int{3, 1, 5, 9, 4, 12}
-	num := findK(arr, 2)
-	fmt.Println(num)
+	fmt.Println(timestamp.Timestamp{Seconds: time.Now().Unix()})
 }

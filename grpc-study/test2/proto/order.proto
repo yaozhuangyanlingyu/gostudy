@@ -1,0 +1,23 @@
+syntax="proto3";
+
+package proto;
+import "google/protobuf/timestamp.proto";
+
+// 请求参数
+message CreateRequest{
+    int32                       userID      = 1;    // 用户ID 
+    repeated int32              productID   = 2;    // 商品ID
+    google.protobuf.Timestamp   orderTime   = 3;    // 创建时间
+}
+
+// 返回参数
+message CreateResponse{
+    string  code        = 1;
+    string  msg         = 2;
+    int32   order_id    = 3;    // 订单ID
+}
+
+service Order{
+    rpc Create(CreateRequest)returns(CreateResponse){}
+}
+

@@ -12,7 +12,7 @@ message ProductRequest{
 message ProductResponse{
     string        pid       = 1;
     Status        status    = 2;
-    repeated User users     = 3;
+    repeated User users     = 3;        // 如果非同包，需要跟上包名称
 }
 
 service Product{
