@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package proto;
+
+message User{
+    int32   uid=1;          // 用户ID
+    string  name=2;         // 用户姓名
+}
+
+enum Status{
+    draft       = 0;    // 草稿
+    onsale      = 1;    // 在售
+    sold        = 2;    // 已售
+    sendback    = 3;    // 回寄
+}
