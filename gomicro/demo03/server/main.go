@@ -35,14 +35,22 @@ func (_this *Product) GetProductList(ctx context.Context, req *proto.GetProductL
 
 func main() {
 	// 将服务注册到consul
-	consulReg := consul.NewRegistry(
+	reg := consul.NewRegistry(
 		registry.Addrs("dev03.aplum-inc.com:8500"),
 	)
+
+	// 将服务注册到etcd
+	/*
+		reg := etcdv3.NewRegistry(func(op *registry.Options) {
+			op.Addrs = []string{
+				"http://192.168.3.34:2379", "http://192.168.3.18:2379", "http://192.168.3.110:2379",
+			}
+		})*/
 
 	// 创建micro服务
 	service := micro.NewService(
 		micro.Name("product-srv-yaoxf"),
-		micro.Registry(consulReg),
+		micro.Registry(reg),
 	)
 
 	// 解析命令参数
